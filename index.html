@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Arcade</title>
+
+		<link rel="stylesheet" href="../common/stylesheets/stylesheet.css">
+    <link rel="stylesheet" href="arcadeStylesheet.css">
+		<script src="arcadeFlow.js" type="module"></script>
+		<script src="../common/scripts/navigation.js" type="module"></script>
+		<!--
+			<script src="games/game.js"></script>
+			<script src="games/minesweeperFunctions.js"></script>
+			<script src="arcade.js"></script>
+		-->
+
+	</head>
+	<body>
+
+    <div id="header" >
+			<h1>Arcade</h1>
+			<div id="navBar">
+				<a href="../index.html">Back to Home</a>
+			</div>
+		</div>
+		<div id="content">
+      <div id="game-container">
+        <div id="game-machine">
+          <div class="machine-component" id="game-deck">
+
+          </div>
+          <div class="machine-component" id="game-screen">
+            <div  id="game">        
+            </div>
+          </div>
+          <div class="machine-component" id="settings">
+          </div>
+        </div>
+      </div>
+		  <div id="cartridge-container" >
+			  <div class="game-cartridge"  data="minesweeper">
+				  <h3 class="game-title">Minesweeper</h3>
+					<img
+            src="icons/minesweeper.png"
+						draggable="false"
+          ></img>
+				  <p class="game-desc" >A simple online version of minesweeper.</p>
+			  </div>
+			  <div class="game-cartridge" data="snake" >
+				  <h3 class="game-title" >Snake</h3>
+					<img
+						src="icons/snake.png"
+						draggable="false"
+					></img>
+          <p class="game-desc">ssss ssss sssnake</p>
+			  </div>
+		  </div>
+	  </div>
+		<div id="hidden" style="display: none">
+		</div>
+	</body>
+</html>

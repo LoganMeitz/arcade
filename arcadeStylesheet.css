@@ -1,0 +1,274 @@
+
+/* Arcade Machine */
+
+#game-container {
+  display: flex;
+  justify-content: center;
+}
+
+#game-machine {
+  width: 50em;
+  background-color: var(--altdark);
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 
+    "settings game deck"
+    "settings game .";
+  height: 24em;
+  padding: 1em;
+  grid-gap: 1em;
+}
+
+#game-machine button {
+  color: var(--altlight);
+  background-color: var(--altdark);
+  padding: 0.5em;
+  font-weight: 600;
+  border-radius: 15px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: var(--mainlight) var(--altdark) var(--altdark) var(--mainlight);
+}
+
+#game-machine button:hover {
+  background-color: var(--accent);
+  color: var(--maindark);
+  box-shadow: 0 0 20px white;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+
+.long {
+  font-size: 0.75em;
+  margin: 1em;
+}
+
+
+.machine-component {
+  background-color: var(--maindark);
+  padding: 1em;
+  border-radius: 15px;
+}
+
+#game-deck {
+  grid-area: deck;
+  padding: 0;
+}
+
+#game-screen {
+  position: relative;
+  transition: 1s ease;
+  grid-area: game;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#info {
+  grid-area: info;
+}
+
+#settings {
+  grid-area: settings;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+
+#overlay {
+  width: 100%;
+  height: 100%;
+  background-color:rgba(0,0,0,0.5);
+  box-shadow: 0 0 20px black;
+  border-radius: 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  animation-delay: 0s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#overlay p {
+  background-color: var(--maindark);
+  padding: 0.5em;
+  border-radius: 15px;
+  opacity: 98%;
+}
+
+#overlay button {
+  color: var(--altlight);
+  background-color: var(--maindark);
+  padding: 0.5em;
+  border-radius: 15px;
+  opacity: 98%;
+}
+
+#overlay button:hover {
+  background-color: var(--altdark);
+  box-shadow: 0 0 20px white;
+  
+}
+
+
+/* Game Cartridges */
+
+#cartridge-container {
+  margin: 2em;
+  padding: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10%;
+  justify-content: center;
+  
+}
+
+.game-cartridge {
+  position: relative;
+  text-align: center;
+  flex: 1;
+  border-radius: 15px;
+  aspect-ratio: 1/1;
+  background-color: var(--accent);
+  color: var(--mainlight);
+  max-width: 12em;
+  min-width: 9em;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  user-select: none;
+
+}
+
+.dragging {
+  position: absolute;
+  animation-name: rock;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  z-index: 2;
+}
+
+
+.game-cartridge img {
+  opacity: 70%;
+}
+
+.game-title {
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  top: 0;
+  z-index: 1;
+
+  margin: 0;
+  padding: 0;
+}
+
+.game-desc {
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  bottom: 0;
+  z-index: 1;
+  
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes rock {
+  0%   { transform: rotate(-15deg);}
+  100% { transform: rotate(15deg);}
+}
+
+/* Minesweeper specific */
+
+.minesweeper table{
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin: 10px;
+}
+.minesweeper td {
+  border: 1px solid black;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.minesweeper .unchecked {
+  background-color: lightgrey;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+}
+
+
+
+.minesweeper .checked { background-color: darkgrey; }
+.minesweeper .unchecked {
+  background-color: lightgrey;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  }
+
+.minesweeper .flagged { background-color: yellow; color: black;}
+
+.minesweeper .adjacent0{}
+.minesweeper .adjacent1{color: blue;}
+.minesweeper .adjacent2{color: green;}
+.minesweeper .adjacent3{color: red;}
+.minesweeper .adjacent4{color: darkblue;}
+.minesweeper .adjacent5{color: darkred;}
+.minesweeper .adjacent6{color: purple;}
+.minesweeper .adjacent7{color: black;}
+.minesweeper .adjacent8{color: orange;}
+.minesweeper .mine{ background-color: red; color: black}
+
+.minesweeper #minecount {
+  background-color: var(--maindark);
+  color: var(--accent);
+  border-radius: 15px;
+  width: fit-content;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin-left: 10px;
+}
+
+
+/* Snake */
+
+.snake table {
+  border: 10px solid var(--altdark);
+  border-collapse: collapse;
+  margin: 10px;
+}
+
+.snake td {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.snake td img {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.rotate90 { transform: rotateZ(90deg); }
+.rotate180 { transform: rotateZ(180deg); }
+.rotate270 { transform: rotateZ(270deg); }
