@@ -6,6 +6,8 @@ export class Snake extends Game {
   gameInterval;
   keyInput;
 
+  tickTime = 160;
+
   size = 10;
 
   food = { x: null, y: null};
@@ -21,7 +23,7 @@ export class Snake extends Game {
   }
 
   runGame(){
-    this.gameInterval = setInterval(this.gameTick.bind(this), 160);
+    this.gameInterval = setInterval(this.gameTick.bind(this), this.tickTime);
     this.segments.unshift(new Segment(4,9,0,false, true));
     this.generateFood();
   }
@@ -31,7 +33,7 @@ export class Snake extends Game {
   }
 
   resume(){
-    this.gameInterval = setInterval(this.gameTick.bind(this), 100);
+    this.gameInterval = setInterval(this.gameTick.bind(this), this.tickTime);
   }
 
   buildView(){
