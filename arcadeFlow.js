@@ -17,8 +17,6 @@ function mobileNavigation() {
 
 
 function startMachine() {
-
-  console.log('oh');
   
   const cartridgeContainer = document.getElementById("cartridge-container");
 
