@@ -1,3 +1,122 @@
+/* Copy of General styles */
+
+:root {
+  --maindark: #3a3740;
+  --altdark: #615D6C;
+  --mainlight: #CAE5FF;
+  --altlight: #ACEDFF;
+  --accent: #89BBFE; 
+}
+
+@font-face {
+  font-family: "univers";
+  src: url("../fonts/univers_55.ttf");
+}
+
+html {
+  font-family: "univers", sans-serif;
+}
+  
+body {
+  width: 100%;
+  background-color: var(--maindark);
+  color: var(--altlight);
+  background: linear-gradient(to right, var(--altdark),  var(--maindark) 15%, var(--maindark) 85%, var(--altdark));
+  margin: 0px;
+  padding: 0px;
+  display: inline-grid;
+}
+
+
+.mobile-warning {
+  text-align: center;
+  font-size: 7vw;
+  margin: 2em;
+  animation-name: fade-in;
+  animation-duration: 1s;
+}
+
+#content {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#content a:link,
+#content a:visited {
+  color: var(--accent)
+}
+
+#content a:hover {
+  color: var(--altdark)
+}
+
+@keyframes fade-in {
+  0%   {opacity: 0%;}
+  100% {opacity: 100%;}
+}
+
+
+/* Copy of desktop stylesheet */
+
+#home-link {
+  background: var(--mainlight);
+  color: var(--altdark);
+  padding: 2em;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0 0 15px 0;
+  font-weight: 900;
+  text-decoration: none;
+  font-family: "univers", sans-serif;
+}
+
+#home-link:hover,
+#home-link:focus {
+  background: var(--accent);
+  color: var(--maindark);
+}
+
+#home-link:active {
+  background: var(--altlight);
+  transform: scale(1);
+}
+
+button {
+  display: inline-block;
+  border: none;
+  border-radius: 15px;
+  padding: 1rem 2rem;
+  margin: 0;
+  text-decoration: none;
+  background-color: var(--altdark);
+  color: var(--mainlight);
+  font-family: sans-serif;
+  font-size: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, 
+              transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+
+
+button:hover,
+button:focus {
+  background: var(--accent);
+  color: var(--maindark);
+}
+
+button:active {
+  transform: scale(0.99);
+}
+
+.mobile-specific {
+  display: none;
+}
+
 
 /* Arcade Machine */
 
