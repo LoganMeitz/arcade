@@ -3,9 +3,23 @@ import { Game } from './games/game.js';
 import { Minesweeper } from './games/minesweeper.js';
 import { Snake } from './games/snake.js';
 
+function mobileNavigation() {
+  const mobileWarning = `
+    <div class='mobile-warning'>
+      <p>Sorry, this page does not yet have a mobile friendly view</p>
+      <button onclick="history.back()">Take Me Back</button>
+    </div>
+  `;
 
-window.addEventListener("load", function(){
+  const body = document.querySelector('body');
+  body.innerHTML = mobileWarning;
+}
 
+
+function startMachine() {
+
+  console.log('oh');
+  
   const cartridgeContainer = document.getElementById("cartridge-container");
 
   const moveCard = function(card, destination){
@@ -166,4 +180,12 @@ window.addEventListener("load", function(){
   document.querySelectorAll(".game-cartridge").forEach(ele => ele.addEventListener('mousedown', startDrag));
 
 
+}
+
+
+
+window.addEventListener("load", function(){
+  const screenWidth = window.screen.width;
+  if (screenWidth > 600) startMachine();
+  else mobileNavigation();
 });
