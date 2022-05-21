@@ -6,6 +6,7 @@ export class ArcadeMachine {
   gameDeck;
 
   gameClass;
+  gameRunning;
   game;
 
 
@@ -16,9 +17,17 @@ export class ArcadeMachine {
     this.gameDeck = gameDeck;
 
     this.controlPanel.output = this.readInput.bind(this);
-    this.controlPanel.init();
 
     this.gameDeck.onRead = this.setGameClass.bind(this);
+
+    this.controlPanel.init();
+    this.controlPanel.disable();
+
+    this.gameScreen.makeOverlay(
+      [{
+        text: 'Grab a game from below to begin'
+      }], 
+    )
   }
 
   // good, sensible functions:
@@ -52,17 +61,20 @@ export class ArcadeMachine {
     if (this.gameClass){
       this.game = new this.gameClass();
       this.gameScreen.attachView(this.game.getView());
+      this.controlPanel.enable();
       this.gameScreen.makeOverlay([], [{text: 'Start', logic: this.startGame.bind(this)}]);
+      this.gameRunning = false;
     }
   }
 
   startGame(){
     this.gameScreen.clearOverlay();
     if (this.game) this.game.startGame(this.gameOver.bind(this));
+    this.gameRunning = true;
   }
 
   pauseGame(){
-    if (this.game) {
+    if (this.game && this.gameRunning) {
       this.game.pause();
       this.gameScreen.makeOverlay(
         [], 
@@ -77,6 +89,7 @@ export class ArcadeMachine {
   resumeGame(){
     this.game.resume();
     this.gameScreen.clearOverlay();
+    this.gameRunning = true;
   }
 
   restartGame(){
@@ -85,6 +98,7 @@ export class ArcadeMachine {
   }
 
   gameOver(win){
+    this.gameRunning = false;
     this.gameScreen.makeOverlay(
       [{
         text: (win ? 'Victory' : 'Failure')

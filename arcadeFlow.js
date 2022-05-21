@@ -88,12 +88,19 @@ function startMachine() {
       //this.element.appendChild(infoButton);
       //this.element.appendChild(settingsButton);
     },
+    enable: function(){
+      Array.from(this.element.children).forEach(ele=>ele.removeAttribute('disabled'))
+    },
+    disable: function(){
+      Array.from(this.element.children).forEach(ele=>ele.setAttribute('disabled', true))
+    }
     // throw some settings form logic here eventually
   };
 
 
   let gameDeck = {
     element: document.getElementById("game-deck"),
+    dropMessage: document.getElementById("drop-here"),
     gameReader: function(gameTitle){
       if (gameTitle === 'minesweeper'){
         this.onRead(Minesweeper);
@@ -113,6 +120,12 @@ function startMachine() {
         }
       })
     },
+    showDropHere: function(){
+      this.dropMessage.classList.remove('hidden');
+    },
+    hideDropHere: function(){
+      this.dropMessage.classList.add('hidden');
+    }
   };
 
   cartridgeContainer.dropCard = (card=>{
@@ -138,6 +151,7 @@ function startMachine() {
 
     this.classList.add('dragging');
     
+    gameDeck.showDropHere();
     
     let dragging = drag.bind(this);
     let stopDragging = endDrag.bind(this);
@@ -146,6 +160,8 @@ function startMachine() {
     window.addEventListener('mouseup', stopDragging);
 
     function endDrag(e){
+
+      gameDeck.hideDropHere();
 
       window.removeEventListener('mousemove', dragging);
       window.removeEventListener('mouseup', stopDragging);
