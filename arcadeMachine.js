@@ -59,6 +59,7 @@ export class ArcadeMachine {
 
   loadGame(){
     if (this.gameClass){
+      this.gameScreen.clearWindow();
       this.game = new this.gameClass();
       this.gameScreen.attachView(this.game.getView());
       this.controlPanel.enable();
