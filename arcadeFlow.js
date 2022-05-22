@@ -21,6 +21,7 @@ function startMachine() {
   const cartridgeContainer = document.getElementById("cartridge-container");
 
   const moveCard = function(card, destination){
+    console.log(card, destination);
     card.parentNode.removeChild(card);
     destination.appendChild(card);
   }
@@ -121,7 +122,15 @@ function startMachine() {
       })
     },
     showDropHere: function(){
-      this.dropMessage.classList.remove('hidden');
+      if (
+        !Array.from(this.element.children)
+        .find(n=>{
+          return n.classList.contains('game-cartridge')
+          && !n.classList.contains('dragging')
+        })
+      ) {
+        this.dropMessage.classList.remove('hidden');
+      }
     },
     hideDropHere: function(){
       this.dropMessage.classList.add('hidden');
@@ -172,16 +181,20 @@ function startMachine() {
       this.style.top = 0;
       this.style.left = 0;
 
-      let droppedCorners = [
+      let elementsFromDrop = [
         ...document.elementsFromPoint(left,top),
         ...document.elementsFromPoint(right,top),
         ...document.elementsFromPoint(left,bottom),
         ...document.elementsFromPoint(right,bottom),
+       ...document.elementsFromPoint(
+         left+(right-left)/2,
+         top+(bottom-top)/2,
+        ),
       ];
 
-      let droppedAt = droppedCorners.find(element=>element.id==='game-deck'||element.id==='cartridge-container');
+      let droppedAt = elementsFromDrop.find(element=>element.id==='game-deck'||element.id==='cartridge-container');
 
-      if (!!droppedAt && droppedAt !== this.parentNode){
+      if (!!droppedAt){
         droppedAt.dropCard(this);
       } else {
         moveCard(this, cartridgeContainer);
