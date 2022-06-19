@@ -1,4 +1,7 @@
 # Arcade
+
+[View Here](https://loganmeitz.codes/arcade/)
+
 A collection of pure JS games. Intended as a small project for my personal website to practice some vanilla JavaScript stuff. As of now, this is a work in progress.  
 
 The Arcade has a view comprised of a 'Game Machine' and a series of 'Game Cartridges' which can be inserted into the game machine to be played. Planned features for the future include the ability to change a number of settings for each game and the ability to change colour schemes dynamically through a series of 'Theme Cartridges'   
